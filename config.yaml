@@ -1,4 +1,8 @@
 SAMPLE : {'sample1.s_1', 'sample2.s_1'}
+TREAT : {'sample1.s_1'} 
+CONTROL : {'sample2.s_1'}
+TREAT_NAME : {'A'} 
+CONTROL_NAME : {'B'}
 WORKDIR: '/rds/project/yhbl2/rds-yhbl2-genehunter/SM/RNASeq'
 STRAND: 2
 GENOME: "/rds/project/yhbl2/rds-yhbl2-genehunter/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/Bowtie2Index/genome"

@@ -7,8 +7,8 @@ rule all:
 	  expand("galore/{SAMPLE}.r_2_val_2.fq.gz", SAMPLE=config['SAMPLE']), 
           expand("{SAMPLE}.sam", SAMPLE=config['SAMPLE']), 
           expand("{SAMPLE}.sorted.bam", SAMPLE=config['SAMPLE']), 
-          expand("{SAMPLE}.tmp.txt", SAMPLE=config['SAMPLE']), 
-          expand("{SAMPLE}.counts.txt", SAMPLE =config['SAMPLE'])
+          expand("{treat}.counts.txt", treat= config['TREAT_NAME']),
+          expand("{control}.counts.txt", control =config['CONTROL_NAME'])
 rule trim: 
     input: 
        r1 = "{sample}.r_1.fq.gz",
@@ -60,23 +60,18 @@ rule sort:
 
 rule feature_count:
      input: 
-        "{sample}.sorted.bam"
+        expand("{sample}.sorted.bam", sample = config['TREAT']), 
+        expand("{sample}.sorted.bam", sample = config['CONTROL'])
      params:
         config['STRAND'],
         config['GTF']
      output:
-       "{sample}.tmp.txt"
+         expand("{treat}.counts.txt", treat =config['TREAT_NAME']),
+         expand("{control}.counts.txt", control =config['CONTROL_NAME'])
      shell:
          """
-          featureCounts -p -t exon -g gene_id -a {params[1]} -o {output} {input} -s {params[0]}
+          featureCounts -p -t exon -g gene_id -a {params[1]} -o {output[0]} {input[0]} -s {params[0]}
+          featureCounts -p -t exon -g gene_id -a {params[1]} -o {output[1]} {input[1]} -s {params[0]}
          """ 
 
-rule format: 
-       input: 
-          "{sample}.tmp.txt" 
-       output: 
-          "{sample}.counts.txt" 
-       shell: 
-          """
-          tail -n +3 {input} |cut -f1,7- > {output} 
-          """ 
+        
