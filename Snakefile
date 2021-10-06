@@ -1,5 +1,8 @@
 configfile: "config.yaml"
+import pandas as pd
+import numpy as np
 
+ruleorder: trim > tosam > tobam > sort > feature_count > DGE
 
 rule all:
       input:
@@ -73,5 +76,16 @@ rule feature_count:
           featureCounts -p -t exon -g gene_id -a {params[1]} -o {output[0]} {input[0]} -s {params[0]}
           featureCounts -p -t exon -g gene_id -a {params[1]} -o {output[1]} {input[1]} -s {params[0]}
          """ 
+     
 
-        
+       
+rule DGE:
+    input:
+        groupCount = expand(output_path + "/countGroup/{group}_gene_count.tsv", group = groups)
+    output:
+        normControl = output_path + "/countGroup/" + control + "_gene_norm.tsv",
+        normTreat = output_path + "/countGroup/" + treat + "_gene_norm.tsv",
+        dea = output_path + "/DEA/" + "dea_" + control + "_" + treat + ".tsv", 
+        deg = output_path + "/DEA/" + "deg_" + control + "_" + treat + ".tsv"
+    shell:
+        "Rscript scripts/dge_genome.R" 
