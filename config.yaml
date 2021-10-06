@@ -5,8 +5,7 @@ TREAT_NAME : {'A'}
 CONTROL_NAME : {'B'}
 WORKDIR: '/rds/project/yhbl2/rds-yhbl2-genehunter/SM/RNASeq'
 STRAND: 2
-GENOME: "/rds/project/yhbl2/rds-yhbl2-genehunter/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/Bowtie2Index/genome"
+GENOME: "/rds/project/yhbl2/rds-yhbl2-genehunter/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/WholeGenomeFasta/genome.fa"
 GTF: "/rds/project/yhbl2/rds-yhbl2-genehunter/SM/annotations/Mus_musculus/Ensembl/GRCm38/Annotation/Genes/genes.gtf" 
 INDEX: "/rds/project/yhbl2/rds-yhbl2-genehunter/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/Bowtie2Index/genome"
-
 

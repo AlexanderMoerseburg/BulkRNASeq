@@ -1,0 +1,7 @@
+# conda environment configuration for snakemake --use-conda
+channels:
+    - bioconda
+    - defaults
+dependencies:
+    - bbmap=38.93
+    - samtools=1.13
