@@ -82,4 +82,4 @@ rule DGE:
          expand("{control}.norm.txt", control =config['CONTROL_NAME'])
     conda: 'env/env-dge.yaml'
     shell: 
-        "Rscript dge_genome.R {input[0]} {input[1]}" 
+        "Rscript scripts/dge_genome.R {input[0]} {input[1]}" 
