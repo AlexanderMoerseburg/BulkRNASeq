@@ -52,26 +52,6 @@ and you can see the command printed on a dry run using:
 
     snakemake -j1 -n -p
 
-#### Keep going option 
-
-
-You can try the following to keep going if any issues happen, like no variants is found by one tool:
-
-    snakemake -j1 --keep-going
-
-
-## TODO 
-
-
-#### Dry run 
-
-for a dry run use:
-
-    snakemake -j1 -n
-
-and you can see the command printed on a dry run using:
-
-    snakemake -j1 -n -p
 
 #### Keep going option 
 
@@ -81,10 +61,7 @@ You can try the following to keep going if any issues happen, like no variants i
     snakemake -j1 --keep-going
 
 
-## TODO 
+#### Collect some stats 
 
-1. Add DESEQ2 options 
-2. Add Star and other aligners along with BBmap for more options 
-3. Add mapping to transcriptomes like Salmon, etc. 
-
+    snakemake -j 10 --keep-going --stats run.stats
 
