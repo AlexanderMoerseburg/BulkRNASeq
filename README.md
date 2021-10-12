@@ -6,7 +6,7 @@ This is an RNASeq snakemake pipeline written by Sherine Awad.
 The pipeline uses edgeR and BBmap. 
 More tools and more options are being added to the pipeline. 
 
-Edit the config file, choose if you have pair or single reads. Edit the treatment.tsv and control.tsv to have your treatments and control names. 
+Edit the config file, choose if you have paired-end or single reads. Edit the treatment.tsv and control.tsv to have your treatments and control names. 
 
 Edit your reference. Use Makefile to pull the reference if needed (See below). 
 
@@ -69,7 +69,7 @@ You can try the following to keep going if any issues happen, like no variants i
 
     snakemake -j 10 --keep-going --stats run.stats
 
-#### REFERENCES
+#### References
 
 For the sake of reproducibility, we provide a makefile to pull the reference; HUMAN or Mouse. More references will be included. 
 
