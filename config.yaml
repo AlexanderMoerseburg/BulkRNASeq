@@ -15,5 +15,5 @@ GENOME: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38
 GTF: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38/Annotation/Genes/genes.gtf" 
 INDEX: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/Bowtie2Index/genome"
 
-PAIRED: TRUE  #PAIRED is either TRUE or FALSE  
+PAIRED: FALSE  #PAIRED is either TRUE or FALSE  
 MEMORY: "-Xmx10g" #for 50giga, change as much giga as you have 

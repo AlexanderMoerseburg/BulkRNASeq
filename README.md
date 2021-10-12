@@ -65,3 +65,17 @@ You can try the following to keep going if any issues happen, like no variants i
 
     snakemake -j 10 --keep-going --stats run.stats
 
+#### REFERENCES
+
+For the sake of reproducibility, we provide a makefile to pull the reference; HUMAN or Mouse. More references will be included. 
+For Human Ensembl GRCh37:
+
+    
+    make Homo_sapiens_Ensembl_GRCh37.tar.gz
+
+For Mouse Ensembl GRCm38: 
+
+    
+    make Mus_musculus_Ensembl_GRCm38.tar.gz
+
+ 
