@@ -6,7 +6,11 @@ This is an RNASeq snakemake pipeline written by Sherine Awad.
 The pipeline uses edgeR and BBmap. 
 More tools and more options are being added to the pipeline. 
 
-To run the pipeline, edit the config file to match your sample names, your reference genome then: 
+Edit the config file, choose if you have pair or single reads. Edit the treatment.tsv and control.tsv to have your treatments and control names. 
+
+Edit your reference. Use Makefile to pull the reference if needed (See below). 
+
+Once you edit the config file to match your needs, then:  
 
 
     snakemake -jn 
@@ -68,6 +72,8 @@ You can try the following to keep going if any issues happen, like no variants i
 #### REFERENCES
 
 For the sake of reproducibility, we provide a makefile to pull the reference; HUMAN or Mouse. More references will be included. 
+
+
 For Human Ensembl GRCh37:
 
     
