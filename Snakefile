@@ -1,13 +1,23 @@
 configfile: "config.yaml"
-import pandas as pd
 
-TREAT = pd.read_csv(config['TREAT'], header = 0)
-CONTROL = pd.read_csv(config['CONTROL'], header = 0)
+with open(config['TREAT']) as fp:
+    TREAT = fp.read().splitlines()
+with open(config['CONTROL']) as fp:
+    CONTROL = fp.read().splitlines()
+
+print(TREAT) 
+print(CONTROL)
 
 rule all:
       input:
-          expand("{treat}.counts.txt", treat= config['TREAT_NAME']),
-	  expand("{control}.counts.txt", control= config['CONTROL_NAME'])
+          expand("{sample}.bam", sample = TREAT),
+          expand("{sample}.bam", sample = CONTROL),
+          expand("{sample}.sorted.bam", sample = TREAT),
+          expand("{sample}.sorted.bam", sample = CONTROL),
+          expand("{sample}.{group}.txt", sample = TREAT, group = config['TREAT_NAME']),
+          expand("{sample}.{group}.txt", sample = CONTROL, group = config['CONTROL_NAME']),
+          expand("{treat}_{control}_cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
+          expand("{treat}_{control}_dge.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
 
 if config['PAIRED']: 
     rule trim: 
@@ -83,30 +93,30 @@ rule sort:
 
 rule feature_count:
      input: 
-        expand("{groupA}.sorted.bam" , groupA = TREAT), 
-        expand("{groupB}.sorted.bam" , groupB = CONTROL)
+        "{sample}.sorted.bam"
      params:
         config['STRAND'],
-        config['GTF']
+        config['GTF'], 
+        file = "tmp.txt"
      output:
-         expand("{groupA}.counts.txt", groupA = config['TREAT_NAME']),
-         expand("{groupB}.counts.txt", groupB = config['CONTROL_NAME'])
+         "{sample}.{group}.txt"
      conda: "env/env-feature.yaml"
      shell:
          """
-          featureCounts -p -t exon -g gene_id -a {params[1]} -o {output[0]} {input[0]} -s {params[0]}
-          featureCounts -p -t exon -g gene_id -a {params[1]} -o {output[1]} {input[1]} -s {params[0]}
-        """
+          featureCounts -p -t exon -g gene_id -a {params[1]} -o {params[2]} {input[0]} -s {params[0]} 
+          tail -n +3 {params[2]} | cut -f1,7 > {output[0]}
+         """
 
-"""
 rule DGE: 
-    input: 
-       expand("{treat}.counts.txt", treat =config['TREAT_NAME']),
-       expand("{control}.counts.txt", control =config['CONTROL_NAME'])
-    output: 
-         expand("{treat}.norm.txt", treat =config['TREAT_NAME']),
-         expand("{control}.norm.txt", control =config['CONTROL_NAME'])
+    params: 
+         treat = config['TREAT_NAME'], 
+         control = config['CONTROL_NAME'], 
+         N = config['N']
+    output:
+         expand("{treat}_{control}_cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
+         expand("{treat}_{control}_dge.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
     conda: 'env/env-dge.yaml'
     shell: 
-        "Rscript scripts/dge_genome.R {input[0]} {input[1]}" 
-"""
+         """
+          Rscript scripts/dge_genome.R {params[0]} {params[1]} {params[2]}  
+         """ 

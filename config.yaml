@@ -1,19 +1,12 @@
-#SAMPLE : {'SLX-18569.RNAA001.HJL7FDRXX.s_1', 'SLX-18569.RNAA008.HJL7FDRXX.s_1'}
-#TREAT : {'SLX-18569.RNAA001.HJL7FDRXX.s_1'} 
-#CONTROL : {'SLX-18569.RNAA008.HJL7FDRXX.s_1'}
-#SAMPLE: {'sample1.s_1', 'sample2.s_1'}
-#TREAT: {'sample1.s_1'}
-#CONTROL: {'sample2.s_1'}
-
 TREAT: "treatment.tsv"
 CONTROL: "control.tsv"
-TREAT_NAME : {'stress'} 
-CONTROL_NAME : {'wildtype'}
+TREAT_NAME : "stress" 
+CONTROL_NAME : "wildtype"
 WORKDIR: '/rds/project/yhbl2/rds-yhbl2-genehunter/SM/RNASeq'
 STRAND: 2
 GENOME: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/WholeGenomeFasta/genome.fa"
 GTF: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38/Annotation/Genes/genes.gtf" 
 INDEX: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/Bowtie2Index/genome"
-
-PAIRED: FALSE  #PAIRED is either TRUE or FALSE  
-MEMORY: "-Xmx10g" #for 50giga, change as much giga as you have 
+N : 2 #Number of replicates 
+PAIRED: TRUE  #PAIRED is either TRUE or FALSE  
+MEMORY: "-Xmx40g" #for 40giga, change as much giga as you have 
