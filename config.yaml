@@ -9,4 +9,10 @@ GTF: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38/An
 INDEX: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Mus_musculus/Ensembl/GRCm38/Sequence/Bowtie2Index/genome"
 N : 2 #Number of replicates 
 PAIRED: TRUE  #PAIRED is either TRUE or FALSE  
+TRANSCRIPTS: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Homo_sapiens.GRCh38.cdna.all.fa" 
+LEVEL: TRANSCRIPTS #For genome level analysis use GENOME, change to TRANSCRIPTS for transcripts level analysis
+
+SALMON_INDEX: "/rds/project/rds-O11U8YqSuCk/SM/annotations/SalmonGRCh38Index" 
+SALMON_LIBRARY: SR
+
 MEMORY: "-Xmx40g" #for 40giga, change as much giga as you have 

@@ -1,17 +1,4 @@
-#library(tximport)
-#library(rjson)
-#library(readr)
 library("edgeR")
-#library("gplots")
-#library(biomaRt)
-#library(dplyr) 
-#library("AnnotationDbi")
-#library("org.Hs.eg.db")
-#library(magrittr)
-#library(pathview)
-#library(gage)
-#library(gageData)
-#library(data.table)
 
 args <- commandArgs(trailingOnly = TRUE)
 control = args[1]
@@ -25,10 +12,11 @@ treat_list = list.files(path = ".",sprintf("*.%s.txt",treat) )
 treat_list
 
 group = factor(c(rep(args[1], N), rep(args[2],N)) )
+
 files <- c(control_list, treat_list) 
+files 
 
 dge  <- readDGE(files,header=FALSE, group =group)
-
 countsPerMillion <- cpm(dge)
 summary(countsPerMillion)
 countCheck <- countsPerMillion > 1 
@@ -48,4 +36,3 @@ out = paste(outname,"cpm.csv", sep="_")
 write.csv(countsPerMillion, out) 
 out = paste(outname,"dge.csv", sep="_")
 write.csv(etp$table, out)
-
