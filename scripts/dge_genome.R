@@ -1,8 +1,8 @@
 library("edgeR")
 
 args <- commandArgs(trailingOnly = TRUE)
-control = args[1]
-treat = args[2]
+treat = args[1]
+control = args[2]
 N = args [3]
 
 control_list = list.files(path = ".",sprintf("*.%s.txt",control) )

@@ -5,8 +5,11 @@ with open(config['TREAT']) as fp:
 with open(config['CONTROL']) as fp:
     CONTROL = fp.read().splitlines()
 
+
 print(TREAT) 
 print(CONTROL)
+SAMPLES = "samples.txt"
+
 if config['LEVEL'] == "GENOME": 
      rule all:
          input:
@@ -21,8 +24,8 @@ if config['LEVEL'] == "GENOME":
 else: 
       rule all: 
          input: 
-            expand("SALMON_{sample}/quant.sf", sample = TREAT), 
-            expand("SALMON_{sample}/quant.sf", sample = CONTROL)
+            expand("{sample}.{group}.quant.sf", sample = TREAT, group = config['TREAT_NAME']), 
+            expand("{sample}.{group}.quant.sf", sample = CONTROL, group =config['CONTROL_NAME'])
          
 if config['PAIRED']: 
     rule trim: 
@@ -43,6 +46,7 @@ else:
      rule trim:
        input:
            "{sample}.fq.gz",
+
        output:
            "galore/{sample}_trimmed.fq.gz",
        conda: 'env/env-trim.yaml'
@@ -52,6 +56,7 @@ else:
            mkdir -p fastqc
            trim_galore --gzip --retain_unpaired --trim1 --fastqc --fastqc_args "--outdir fastqc" -o galore {input} 
            """
+
 if config['PAIRED']: 
     if config['LEVEL'] =="GENOME":
          rule tobam:
@@ -76,14 +81,16 @@ if config['PAIRED']:
              params: 
                 index = config['SALMON_INDEX'],
                 lib = config['SALMON_LIBRARY'],
-                outdir = "SALMON_{sample}"
+                outdir = "SALMON_{sample}.{group}"
              conda: 'env/env-quant.yaml'
              output:
-                  "SALMON_{sample}/quant.sf" 
+                  "SALMON_{sample}.{group}/quant.sf",
+                  "{sample}.{group}.quant.sf" 
              shell: 
-                  """  
-                  salmon quant -i {params.index} --libType {params.lib} -1 {input.r1} -2 {input.r2} -o {params.outdir} -p 3 --writeUnmappedNames --seqBias --gcBias --validateMappings;  
-                  """
+                 """  
+                 salmon quant -i {params.index} --libType {params.lib} -1 {input.r1} -2 {input.r2} -o {params.outdir} -p 3 --writeUnmappedNames --seqBias --gcBias --validateMappings
+                 ln -fs {output[0]} {output[1]} 
+                 """
 else:
       if config['LEVEL'] =="GENOME": 
          rule tobam:
@@ -106,13 +113,15 @@ else:
                 params:
                    index = config['SALMON_INDEX'],
                    lib = config['SALMON_LIBRARY'],
-                   outdir = "SALMON_{sample}"
+                   outdir = "SALMON_{sample}.{group}"
                 conda: 'env/env-quant.yaml'
                 output:
-                  "SALMON_{sample}/quant.sf"
+                   "SALMON_{sample}.{group}/quant.sf",
+                   "{sample}.{group}.quant.sf"
                 shell:
                      """
                      salmon quant -i {params.index} --libType {params.lib} -r {input} -o {params.outdir} -p 3 --writeUnmappedNames --seqBias --gcBias --validateMappings
+                     ln -fs {output[0]} {output[1]}
                      """
 rule sort:
     input: 
