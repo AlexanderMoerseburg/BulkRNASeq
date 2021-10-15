@@ -77,6 +77,7 @@ if config['PAIRED']:
                 index = config['SALMON_INDEX'],
                 lib = config['SALMON_LIBRARY'],
                 outdir = "SALMON_{sample}"
+             conda: 'env/env-quant.yaml'
              output:
                   "SALMON_{sample}/quant.sf" 
              shell: 
@@ -106,6 +107,7 @@ else:
                    index = config['SALMON_INDEX'],
                    lib = config['SALMON_LIBRARY'],
                    outdir = "SALMON_{sample}"
+                conda: 'env/env-quant.yaml'
                 output:
                   "SALMON_{sample}/quant.sf"
                 shell:
@@ -142,7 +144,7 @@ if config['LEVEL'] == "GENOME":
               tail -n +3 {params[2]} | cut -f1,7 > {output[0]}
               """
 
-     rule DGE: 
+     rule DGE_genome: 
         params: 
            treat = config['TREAT_NAME'], 
            control = config['CONTROL_NAME'], 
