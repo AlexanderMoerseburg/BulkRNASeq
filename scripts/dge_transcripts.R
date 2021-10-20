@@ -13,17 +13,13 @@ N = args [3]
 files = list.files(path = ".",sprintf("*.quant.sf") )
 files
 
-
-
-#samples <- read.table(file.path("/home/sa941/RNASeq/SLX-16108", "samplestwo2.txt"), header = FALSE)
-#files <- file.path("/home/sa941/RNASeq", "SLX-16108", samples$V1, "quant.sf")
-
 names(files) <- paste0("sample", 1:4)
 print(names)
 file.exists(files)
 tr2gene <- read.csv("tx2gene.csv")
+#to gene level, use tx2gene, but still need somework here
 #txi <- tximport(files, type = "salmon",txIn = TRUE, tx2gene = tr2gene)
-txi <- tximport(files, type = "salmon", txIn = TRUE, txOut = TRUE, countsFromAbundance = "scaledTPM") #, tx2gene = NULL, reader = read.delim, geneIdCol, txIdCol, abundanceCol, countsCol, lengthCol, importer, collatedFiles, ignoreTxVersion = FALSE)
+txi <- tximport(files, type = "salmon", txIn = TRUE, txOut = TRUE, countsFromAbundance = "scaledTPM") #Rest of tximport paramters include: tx2gene = NULL, reader = read.delim, geneIdCol, txIdCol, abundanceCol, countsCol, lengthCol, importer, collatedFiles, ignoreTxVersion = FALSE)
 
 names(txi)
 head(txi$counts)
@@ -46,6 +42,7 @@ summary(cpm(dge))
 dge <- calcNormFactors(dge, method="TMM")
 dge <- estimateCommonDisp(dge)
 dge <- estimateTagwiseDisp(dge)
+#removed for small size sample
 #dge <- estimateTrendedDisp(dge)
 et <- exactTest(dge, pair=c(control, treat)) 
 etp <- topTags(et, n= 100000, adjust.method="BH", sort.by="PValue", p.value = 1)
