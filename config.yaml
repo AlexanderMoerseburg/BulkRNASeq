@@ -14,5 +14,5 @@ LEVEL: TRANSCRIPTS #For genome level analysis use GENOME, change to TRANSCRIPTS 
 
 SALMON_INDEX: "/rds/project/rds-O11U8YqSuCk/SM/annotations/SalmonGRCh38Index" 
 SALMON_LIBRARY: SR
-
+TX2GENE: "Ensembltx2gene.txt" 
 MEMORY: "-Xmx40g" #for 40giga, change as much giga as you have 
