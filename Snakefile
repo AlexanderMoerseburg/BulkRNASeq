@@ -125,21 +125,7 @@ else:
                      salmon quant -i {params.index} --libType {params.lib} -r {input} -o {params.outdir} -p 3 --writeUnmappedNames --seqBias --gcBias --validateMappings
                      ln -fs {output[0]} {output[1]}
                      """
-rule DGE_TRANSCRIPTS: 
-          params:
-                           treat = config['TREAT_NAME'],
-                           control = config['CONTROL_NAME'],
-                           N = config['N'],
-                           gtf = config['TXGTF'],
-                           tx2gene = config['TX2GENE']
-          output:
-                           expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
-          conda: 'env/env-dge.yaml'
-          shell:
-                           """
-                           Rscript scripts/txi2gene.R {params[3]} {params[4]} 
-                           Rscript scripts/dge_transcripts.R {params[1]} {params[0]} {params[2]} {params[4]} 
-                           """
+
 rule sort:
     input: 
        "{sample}.bam"
@@ -182,4 +168,22 @@ if config['LEVEL'] == "GENOME":
         shell: 
            """
            Rscript scripts/dge_genome.R {params[0]} {params[1]} {params[2] }  
-           """ 
+           """
+
+else:
+    rule DGE_TRANSCRIPTS:
+          params:
+                           treat = config['TREAT_NAME'],
+                           control = config['CONTROL_NAME'],
+                           N = config['N'],
+                           gtf = config['TXGTF'],
+                           tx2gene = config['TX2GENE']
+          output:
+                           expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
+          conda: 'env/env-dge.yaml'
+          shell:
+                           """
+                           Rscript scripts/txi2gene.R {params[3]} {params[4]}
+                           Rscript scripts/dge_transcripts.R {params[1]} {params[0]} {params[2]} {params[4]}
+                           """
+ 
