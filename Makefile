@@ -32,7 +32,5 @@ SalmonGRCh37Index:
 SalmonGRCh38Index: 
 	salmon index --index ${REFERENCES}/SalmonGRCh38Index --type puff --transcripts ${REFERENCES}/Homo_sapiens.GRCh38.cdna.all.fa.gz
 
-Ensembltx2gene.txt:
-	Rscript scripts/txi2gene.R ${REFERENCES}/Homo_sapiens.GRCh38.104.gtf.gz Ensembltx2gene.txt 	
 
  
