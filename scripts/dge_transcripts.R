@@ -43,8 +43,8 @@ summary(cpm(dge))
 dge <- calcNormFactors(dge, method="TMM")
 dge <- estimateCommonDisp(dge)
 dge <- estimateTagwiseDisp(dge)
-#removed for small size sample
-dge <- estimateTrendedDisp(dge)
+#removed for small size sample, uncomment otherwise
+#dge <- estimateTrendedDisp(dge)
 et <- exactTest(dge, pair=c(control, treat)) 
 etp <- topTags(et, n= 100000, adjust.method="BH", sort.by="PValue", p.value = 1)
 

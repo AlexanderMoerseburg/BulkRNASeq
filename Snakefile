@@ -26,8 +26,7 @@ else:
          input: 
             expand("{sample}.{group}.quant.sf", sample = TREAT, group = config['TREAT_NAME']), 
             expand("{sample}.{group}.quant.sf", sample = CONTROL, group =config['CONTROL_NAME']),
-            expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
-            expand("{control}_{treat}_salmon_counts.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
+            expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
  
 if config['PAIRED']: 
     rule trim: 
@@ -135,7 +134,6 @@ rule DGE_TRANSCRIPTS:
                            tx2gene = config['TX2GENE']
           output:
                            expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
-                           expand("{control}_{treat}_salmon_counts.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
           conda: 'env/env-dge.yaml'
           shell:
                            """
@@ -176,7 +174,7 @@ if config['LEVEL'] == "GENOME":
         params: 
            treat = config['TREAT_NAME'], 
            control = config['CONTROL_NAME'], 
-           N = config['N'],
+           N = config['N']
         output:
            expand("{treat}_{control}_cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
            expand("{treat}_{control}_dge.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
