@@ -126,19 +126,6 @@ else:
                      ln -fs {output[0]} {output[1]}
                      """
 
-rule sort:
-    input: 
-       "{sample}.bam"
-    output:
-       "{sample}.sorted.bam" 
-    params: 
-        "{sample}.tmp.sorted"
-    log: 
-        "{sample}.sorted.log" 
-    conda: 'env/env-align.yaml'
-    shell: 
-       """samtools sort -T {params} -n -o {output} {input}"""
-
 if config['LEVEL'] == "GENOME":
     rule sort:
        input:

@@ -19,7 +19,7 @@ If you choose to run at the genome level, you will need to edit the genome level
 
 If you choose to run at the transcripts level, you will need to edit the transcripts level section with reference, index, strand, etc.
 
-### Pull Reference
+#### Pull Reference
 
 Whether you will run at genome level or transcripts level, you can use our  Makefile to pull the reference if needed (See below). 
 
@@ -36,7 +36,7 @@ For Mouse Ensembl GRCm38:
 
     make Mus_musculus_Ensembl_GRCm38.tar.gz
 
-####Run Snakemake pipeline 
+#### Run Snakemake pipeline 
 
 Once you edit the config file to match your needs, then:  
 
