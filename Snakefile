@@ -140,7 +140,19 @@ rule sort:
        """samtools sort -T {params} -n -o {output} {input}"""
 
 if config['LEVEL'] == "GENOME":
-     rule feature_count:
+    rule sort:
+       input:
+            "{sample}.bam"
+       output:
+            "{sample}.sorted.bam"
+       params:
+            "{sample}.tmp.sorted"
+       log:
+            "{sample}.sorted.log"
+       conda: 'env/env-align.yaml'
+       shell:
+            """samtools sort -T {params} -n -o {output} {input}""" 
+    rule feature_count:
          input: 
              "{sample}.sorted.bam"
          params:
@@ -156,7 +168,7 @@ if config['LEVEL'] == "GENOME":
               tail -n +3 {params[2]} | cut -f1,7 > {output[0]}
               """
 
-     rule DGE_genome: 
+    rule DGE_genome: 
         params: 
            treat = config['TREAT_NAME'], 
            control = config['CONTROL_NAME'], 
