@@ -61,8 +61,13 @@ For Mouse Ensembl GRCm38:
 
 If you choose to run at transcripts level using Salmon, you need to pull the transcripts and GTF first: 
 
-   make Homo_sapiens.GRCh38.cdna.all.fa.gz
-   make Homo_sapiens.GRCh38.104.gtf.gz
+
+    make Homo_sapiens.GRCh38.cdna.all.fa.gz
+
+Then::
+
+
+    make Homo_sapiens.GRCh38.104.gtf.gz
 
 Or use any other transcripts/GTF.  
 
