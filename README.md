@@ -6,7 +6,7 @@ This is an RNASeq snakemake pipeline written by Sherine Awad.
 The pipeline uses BBmap, featurecounts, and egdeR to do analysis at genome level. It also uses Salmon, tximport, and egdeR to do analysis at transcripts level.  
 More tools and more options are being added to the pipeline. 
 
-#### Edit config file 
+### Edit config file 
 
 The config file has several sections. You will need to edit the general section as follows: 
 
@@ -18,6 +18,8 @@ Edit the treatment.tsv and control.tsv to have your treatments and control names
 Edit the TREAT_NAME  and CONTROL_NAME in the config file to change treatment and control names. Default is stress and wildtype respecively. 
 
 Edit MEMORY entry in config file for how much GB needed. 
+
+#### Run at Genome Level of Transcripts Level 
 
 Edit LEVEL entry in config file to GENOME or TRANSCRIPTS whether to run at genome level or transcripts level respectively. 
  
@@ -31,7 +33,7 @@ Currently, we are using Salmon only for transcripts level, more tools will be us
 Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
 
 
-#### Prepare Reference
+### Prepare Reference
 
 Whether you will run at genome level or transcripts level, you can use our  Makefile to pull the reference if needed (See below). 
 
