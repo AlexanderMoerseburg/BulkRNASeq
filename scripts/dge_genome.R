@@ -77,12 +77,12 @@ pdf(fig)
 res <- etp$table
 with(res, plot(logFC, -log10(PValue), pch=20, main=title, xlim=c(-12,12)))
 # Add colored points: red if FDR<0.05, orange of log2FC>1, green if both)
-with(subset(res, FDR<.05 ), points(logFC, -log10(PValue), pch=20, col="red"))
-with(subset(res, abs(logFC)>1), points(logFC, -log10(PValue), pch=20, col="orange"))
-with(subset(res, FDR<.05 & abs(logFC)>1), points(logFC, -log10(PValue), pch=20, col="green"))
+with(subset(res, FDR<0.05 ), points(logFC, -log10(PValue), pch=20, col="red"))
+with(subset(res, abs(logFC)> 2), points(logFC, -log10(PValue), pch=20, col="orange"))
+with(subset(res, FDR<0.05 & abs(logFC)> 2), points(logFC, -log10(PValue), pch=20, col="green"))
 # Label points with the textxy function from the calibrate plot
 #library(calibrate)
-with(subset(res,FDR<.05 & abs(logFC)>1), textxy(logFC, -log10(PValue), labs=Gene, cex=.8))
+#with(subset(res,FDR<.05 & abs(logFC)>1), textxy(logFC, -log10(PValue), labs=Gene, cex=.8))
 dev.off()
 #-------------------------------
 #Heatmap Plot for log CPM  
@@ -93,7 +93,7 @@ pdf(fig)
 #logCPM = etp$table 
 logCPM =countsPerMillion
 o = rownames(etp$table[abs(etp$table$logFC)>1 & etp$table$PValue<0.05, ])
-logCPM <- logCPM[o[1:25],]
+logCPM <- logCPM[o[1:50],]
 colnames(logCPM) = labels
 logCPM <- t(scale(t(logCPM)))
 require("RColorBrewer")
@@ -102,7 +102,4 @@ myCol <- colorRampPalette(c("dodgerblue", "black", "yellow"))(25)
 myBreaks <- seq(-3, 3, length.out=26)
 heatmap.2(logCPM, col=myCol, breaks=myBreaks,symkey=F, Rowv=TRUE,Colv=TRUE, main=title, key=T, keysize=0.7,scale="none",trace="none", dendrogram="both", cexRow=0.7, cexCol=0.9, density.info="none",margin=c(10,9), lhei=c(2,10), lwid=c(2,6),reorderfun=function(d,w) reorder(d, w, agglo.FUN=mean),  distfun=function(x) as.dist(1-cor(t(x))), hclustfun=function(x) hclust(x, method="ward.D2"))
 dev.off()
-
-
-
 

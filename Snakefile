@@ -166,7 +166,7 @@ if config['LEVEL'] == "GENOME":
         conda: 'env/env-dge.yaml'
         shell: 
            """
-           Rscript scripts/dge_genome.R {params[0]} {params[1]} {params[2] }  
+           Rscript scripts/dge_genome.R {params[0]} {params[1]} {params[2]}  
            """
 
 else:

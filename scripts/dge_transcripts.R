@@ -20,7 +20,9 @@ tr2gene <- read.csv(tximport_file)
 head(tr2gene)
 tx2gene <- select(tr2gene,TXNAME,GENEID)
 head(tx2gene)
-txi <- tximport(files, type = "salmon", txIn = TRUE, txOut = FALSE, tx2gene = tx2gene, countsFromAbundance = "scaledTPM", ignoreTxVersion=TRUE, geneIdCol="GENEID", txIdCol="TXNAME") #Rest of tximport paramters include: tx2gene = NULL, reader = read.delim, geneIdCol, txIdCol, abundanceCol, countsCol, lengthCol, importer, collatedFiles, ignoreTxVersion = FALSE)
+txi <- tximport(files, type = "salmon", txIn = TRUE, txOut = FALSE, tx2gene = tx2gene, countsFromAbundance = "scaledTPM", ignoreTxVersion=TRUE, geneIdCol="GENEID", txIdCol="TXNAME")
+
+#Rest of tximport paramters include: tx2gene = NULL, reader = read.delim, geneIdCol, txIdCol, abundanceCol, countsCol, lengthCol, importer, collatedFiles, ignoreTxVersion = FALSE)
 
 names(txi)
 head(txi$counts)
