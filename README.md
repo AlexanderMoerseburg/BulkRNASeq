@@ -28,10 +28,10 @@ If you choose to run at the transcripts level, you will need to edit the transcr
 
 Currently, we are using Salmon only for transcripts level, more tools will be used in the near future. 
 
-Refere to our Makefile to prepare Salmon Index. 
+Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
 
 
-#### Pull Reference
+#### Prepare Reference
 
 Whether you will run at genome level or transcripts level, you can use our  Makefile to pull the reference if needed (See below). 
 
@@ -47,6 +47,19 @@ For Mouse Ensembl GRCm38:
 
 
     make Mus_musculus_Ensembl_GRCm38.tar.gz
+
+If you choose to run at transcripts level using Salmon, you can prepare Salmon index as below:: 
+
+   
+   make SalmonGRCh37Index
+
+or 
+
+  make SalmonGRCh38Index
+
+Depending on which transcript you choosed. 
+
+ 
 
 #### Run Snakemake pipeline 
 
