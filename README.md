@@ -11,13 +11,25 @@ More tools and more options are being added to the pipeline.
 The config file has several sections. You will need to edit the general section as follows: 
 
 
-Edit the config file, choose if you have paired-end or single reads. Edit the treatment.tsv and control.tsv to have your treatments and control names. 
+Edit the config file, choose if you have paired-end or single reads. For ppaired end read, change PAIRED entry in config file to TRUE (default). For single end reads, change PAIRED entry in config file to FALSE. 
 
-Then you you need to change the level whether to run at genome level or transcripts level. 
+Edit the treatment.tsv and control.tsv to have your treatments and control names.  You can edit TREAT and CONTROL entries in config file to change these file names. 
 
-If you choose to run at the genome level, you will need to edit the genome level section with the reference, index, strand, etc. 
+Edit the TREAT_NAME  and CONTROL_NAME in the config file to change treatment and control names. Default is stress and wildtype respecively. 
 
-If you choose to run at the transcripts level, you will need to edit the transcripts level section with reference, index, strand, etc.
+Edit MEMORY entry in config file for how much GB needed. 
+
+Edit LEVEL entry in config file to GENOME or TRANSCRIPTS whether to run at genome level or transcripts level respectively. 
+ 
+
+If you choose to run at the genome level, you will need to edit the genome level section with the GENOME, GTF, and INDEX for genome, gtf file and index location respetively. You can ignore these entries if you choose to run at transcripts level.  
+
+If you choose to run at the transcripts level, you will need to edit the transcripts level section with TRANSCRIPTS, SALMON_INDEX, SALMON_LIBRARY, TX2GENE, and TXGTF for transcript, SALMON index location, library type as used in SALMON (SR, SF, etc), tx2gene file name and transcripts GTF. 
+
+Currently, we are using Salmon only for transcripts level, more tools will be used in the near future. 
+
+Refere to our Makefile to prepare Salmon Index. 
+
 
 #### Pull Reference
 
