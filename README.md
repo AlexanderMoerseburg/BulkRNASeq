@@ -10,16 +10,23 @@ More tools and more options are being added to the pipeline.
 
 The config file has several sections. You will need to edit the general section as follows: 
 
+#### Paired end or single reads 
 
 Edit the config file, choose if you have paired-end or single reads. For ppaired end read, change PAIRED entry in config file to TRUE (default). For single end reads, change PAIRED entry in config file to FALSE. 
+
+
+#### Choose and edit your treatment and controls files and names
 
 Edit the treatment.tsv and control.tsv to have your treatments and control names.  You can edit TREAT and CONTROL entries in config file to change these file names. 
 
 Edit the TREAT_NAME  and CONTROL_NAME in the config file to change treatment and control names. Default is stress and wildtype respecively. 
 
+
+##### Edit Resources 
+
 Edit MEMORY entry in config file for how much GB needed. 
 
-#### Run at Genome Level of Transcripts Level 
+#### Run at Genome Level or Transcripts Level 
 
 Edit LEVEL entry in config file to GENOME or TRANSCRIPTS whether to run at genome level or transcripts level respectively. 
  
