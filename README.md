@@ -51,15 +51,15 @@ For Mouse Ensembl GRCm38:
 If you choose to run at transcripts level using Salmon, you can prepare Salmon index as below:: 
 
    
-   make SalmonGRCh37Index
+    make SalmonGRCh37Index
 
-or 
+or: 
 
-  make SalmonGRCh38Index
+    make SalmonGRCh38Index
+
 
 Depending on which transcript you choosed. 
 
- 
 
 #### Run Snakemake pipeline 
 
