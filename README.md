@@ -35,6 +35,8 @@ If you choose to run at the genome level, you will need to edit the genome level
 
 If you choose to run at the transcripts level, you will need to edit the transcripts level section with TRANSCRIPTS, SALMON_INDEX, SALMON_LIBRARY, TX2GENE, and TXGTF for transcript, SALMON index location, library type as used in SALMON (SR, SF, etc), tx2gene file name and transcripts GTF. 
 
+The tx2gene will generated automatically and saved into name given in TX2GENE entry in config file using our script txi2gene.R. 
+
 Currently, we are using Salmon only for transcripts level, more tools will be used in the near future. 
 
 Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
