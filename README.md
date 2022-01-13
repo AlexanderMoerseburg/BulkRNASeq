@@ -59,7 +59,15 @@ For Mouse Ensembl GRCm38:
 
     make Mus_musculus_Ensembl_GRCm38.tar.gz
 
-If you choose to run at transcripts level using Salmon, you can prepare Salmon index as below:: 
+If you choose to run at transcripts level using Salmon, you need to pull the transcripts and GTF first: 
+
+   make Homo_sapiens.GRCh38.cdna.all.fa.gz
+   make Homo_sapiens.GRCh38.104.gtf.gz
+
+Or use any other transcripts/GTF.  
+
+
+Then you need to prepare Salmon index as below:: 
 
    
     make SalmonGRCh37Index
@@ -69,7 +77,7 @@ or:
     make SalmonGRCh38Index
 
 
-Depending on which transcript you choosed. 
+Depending on which transcripts you choosed. 
 
 
 #### Run Snakemake pipeline 
