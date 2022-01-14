@@ -15,6 +15,7 @@ MEMORY: "-Xmx40g" #for 40giga, change as much giga as you have
 #Choose whether you wanna proceed with Pathway Analysis
 #---------------------------------------------------------------
 PATHWAY: TRUE
+ORGANISM: HUMAN
 #---------------------------------------------------------------
 #Choose whether to do genome level or at transcripts level
 #---------------------------------------------------------------

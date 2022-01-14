@@ -41,6 +41,11 @@ Currently, we are using Salmon only for transcripts level, more tools will be us
 
 Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
 
+##### Pathway Analysis 
+
+Edit PATHWAY entry in configfile to TRUE to use gage to run KEGG pathway analysis. 
+You will need to edit the ORGANISM entry as well. Choose HUMAN or MOUSE. More organims will be included. 
+
 
 ### Prepare Reference
 

@@ -1,15 +1,19 @@
 configfile: "config.yaml"
 
+ORGANISM = config['ORGANISM']
+if config['PATHWAY'] == "FALSE":
+    ORGANISM = "NONE"
+
+
 with open(config['TREAT']) as fp:
     TREAT = fp.read().splitlines()
 with open(config['CONTROL']) as fp:
     CONTROL = fp.read().splitlines()
 
-
 print(TREAT) 
 print(CONTROL)
 SAMPLES = "samples.txt"
-
+print (ORGANISM)
 if config['LEVEL'] == "GENOME": 
      rule all:
          input:
@@ -159,14 +163,15 @@ if config['LEVEL'] == "GENOME":
         params: 
            treat = config['TREAT_NAME'], 
            control = config['CONTROL_NAME'], 
-           N = config['N']
+           N = config['N'],
+           organism = ORGANISM
         output:
            expand("{treat}_{control}_cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
            expand("{treat}_{control}_dge.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
         conda: 'env/env-dge.yaml'
         shell: 
            """
-           Rscript scripts/dge_genome.R {params[0]} {params[1]} {params[2]}  
+           Rscript scripts/dge_genome.R {params[0]} {params[1]} {params[2]} {params[3]}  
            """
 
 else:
