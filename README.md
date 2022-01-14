@@ -22,7 +22,7 @@ Edit the treatment.tsv and control.tsv to have your treatments and control names
 Edit the TREAT_NAME  and CONTROL_NAME in the config file to change treatment and control names. Default is stress and wildtype respecively. 
 
 
-##### Edit Resources 
+#### Edit Resources 
 
 Edit MEMORY entry in config file for how much GB needed. 
 
@@ -41,7 +41,7 @@ Currently, we are using Salmon only for transcripts level, more tools will be us
 
 Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
 
-##### Pathway Analysis 
+#### Pathway Analysis 
 
 Edit PATHWAY entry in configfile to TRUE to use gage to run KEGG pathway analysis. 
 You will need to edit the ORGANISM entry as well. Choose HUMAN or MOUSE. More organims will be included. 
