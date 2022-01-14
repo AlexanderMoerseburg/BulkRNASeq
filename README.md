@@ -6,11 +6,11 @@ This is an RNASeq snakemake pipeline written by Sherine Awad.
 The pipeline uses BBmap, featurecounts, and egdeR to do analysis at genome level. It also uses Salmon, tximport, and egdeR to do analysis at transcripts level.  
 More tools and more options are being added to the pipeline. 
 
-### Edit config file 
+## Edit config file 
 
 The config file has several sections. You will need to edit the general section as follows: 
 
-#### Paired end or single reads 
+### Paired end or single reads 
 
 Edit the config file, choose if you have paired-end or single reads. For ppaired end read, change PAIRED entry in config file to TRUE (default). For single end reads, change PAIRED entry in config file to FALSE. 
 
