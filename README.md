@@ -1,8 +1,8 @@
-Snakemake Workflow for RNASeq Analysis 
+Snakemake Workflow for RNASeq and Pathway Analysis 
 ==========================================================================
 
 
-This is an RNASeq snakemake pipeline written by Sherine Awad. 
+This is an RNASeq and pathway snakemake pipeline written by Sherine Awad. 
 The pipeline uses BBmap, featurecounts, and egdeR to do analysis at genome level. It also uses Salmon, tximport, and egdeR to do analysis at transcripts level.  
 More tools and more options are being added to the pipeline. 
 
