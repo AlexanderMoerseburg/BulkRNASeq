@@ -2,8 +2,8 @@
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 
-Snakemake Workflow for RNASeq and Gene set enrichment for Pathway/GO Analysis 
-================================================================================
+Snakemake Workflow for Bulk RNASeq and Gene set enrichment for Pathway/GO Analysis 
+=====================================================================================
 
 
 This is an RNASeq and Pathway/GO snakemake pipeline written by Sherine Awad. 
