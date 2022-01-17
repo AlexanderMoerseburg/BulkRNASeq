@@ -19,7 +19,7 @@ The config file has several sections. You will need to edit the general section 
 Edit the config file, choose if you have paired-end or single reads. For ppaired end read, change PAIRED entry in config file to TRUE (default). For single end reads, change PAIRED entry in config file to FALSE. 
 
 
-### Choose and edit your treatment and controls files and names
+### Choose and edit your treatment and control files and names
 
 Edit the treatment.tsv and control.tsv to have your treatments and control names.  You can edit TREAT and CONTROL entries in config file to change these file names. 
 
@@ -45,7 +45,7 @@ Currently, we are using Salmon only for transcripts level, more tools will be us
 
 Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
 
-### Pathway Analysis 
+### Pathway/GO Analysis 
 
 Edit PATHWAY entry in configfile to TRUE to use gage to run  pathway and GO analysis. 
 You will need to edit the ORGANISM entry as well. Choose HUMAN or MOUSE. More organims will be included. 
