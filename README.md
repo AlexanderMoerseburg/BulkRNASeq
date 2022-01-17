@@ -1,8 +1,8 @@
-Snakemake Workflow for RNASeq and Pathway Analysis 
+Snakemake Workflow for RNASeq and Pathway/GO Analysis 
 ==========================================================================
 
 
-This is an RNASeq and pathway snakemake pipeline written by Sherine Awad. 
+This is an RNASeq and Pathway/GO snakemake pipeline written by Sherine Awad. 
 The pipeline uses BBmap, featurecounts, and egdeR to do analysis at genome level. It also uses Salmon, tximport, and egdeR to do analysis at transcripts level.  
 More tools and more options are being added to the pipeline. 
 
@@ -43,7 +43,7 @@ Refere to our Makefile to prepare Salmon Index. See Prepare Reference section be
 
 ### Pathway Analysis 
 
-Edit PATHWAY entry in configfile to TRUE to use gage to run KEGG pathway analysis. 
+Edit PATHWAY entry in configfile to TRUE to use gage to run  pathway and GO analysis. 
 You will need to edit the ORGANISM entry as well. Choose HUMAN or MOUSE. More organims will be included. 
 
 

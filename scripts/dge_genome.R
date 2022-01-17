@@ -163,6 +163,17 @@ plot_pathway = function(pid) pathview(gene.data=foldchanges,gene.idtype="ENTREZI
 #---------------------------------------------------------plot multiple pathways ups and downs 
 tmpup = sapply(keggresidsup, function(pid) pathview(gene.data=foldchanges,gene.idtype="ENTREZID", pathway.id=pid, species="human"))
 tmpdn = sapply(keggresidsdn, function(pid) pathview(gene.data=foldchanges,gene.idtype="ENTREZID", pathway.id=pid, species="human"))
+
+
+#GO
+outGO = paste(outname, "GO.csv", sep ="-")
+data(go.sets.hs)
+data(go.subs.hs)
+gobpsets = go.sets.hs[go.subs.hs$BP]
+gobpres = gage(foldchanges, gsets=kegg.sets.hs, same.dir =TRUE, compare ="unpaired",cutoff=0.05)
+lapply(gobpres, head)
+write.csv(gobpres, outGO)
+
 } else if (ORGANISM == "MOUSE"){
 res$symbol <- mapIds(org.Mm.eg.db,
                      keys=row.names(res),
@@ -214,5 +225,13 @@ plot_pathway = function(pid) pathview(gene.data=foldchanges,gene.idtype="ENTREZI
 #---------------------------------------------------------plot multiple pathways ups and downs 
 tmpup = sapply(keggresidsup, function(pid) pathview(gene.data=foldchanges,gene.idtype="ENTREZID", pathway.id=pid, species="mouse"))
 tmpdn = sapply(keggresidsdn, function(pid) pathview(gene.data=foldchanges,gene.idtype="ENTREZID", pathway.id=pid, species="mouse"))
+#GO
+outGO = paste(outname, "GO.csv", sep ="-")
+data(go.sets.mm)
+data(go.subs.mm)
+gobpsets = go.sets.mm[go.subs.mm$BP]
+gobpres = gage(foldchanges, gsets=kegg.sets.mm, same.dir =TRUE, compare ="unpaired",cutoff=0.05)
+lapply(gobpres, head)
+write.csv(gobpres, outGO)
 } 
 
