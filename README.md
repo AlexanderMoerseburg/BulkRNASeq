@@ -2,8 +2,8 @@
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 
-Snakemake Workflow for RNASeq and Pathway/GO Analysis 
-==========================================================================
+Snakemake Workflow for RNASeq and Gene set enrichment for Pathway/GO Analysis 
+================================================================================
 
 
 This is an RNASeq and Pathway/GO snakemake pipeline written by Sherine Awad. 
@@ -156,4 +156,14 @@ You can try the following to keep going if any issues happen, like no variants i
     snakemake -j 10 --keep-going --stats run.stats
 
 
+### References 
+1. Bushnell, B. (2014). BBMap: a fast, accurate, splice-aware aligner (No. LBNL-7065E). Lawrence Berkeley National Lab.(LBNL), Berkeley, CA (United States).
+2. Patro, R., Duggal, G., Love, M. I., Irizarry, R. A., & Kingsford, C. (2017). Salmon provides fast and bias-aware quantification of transcript expression. Nature methods, 14(4), 417-419.
+3. Robinson, M. D., McCarthy, D. J., & Smyth, G. K. (2010). edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics, 26(1), 139-140.
+4. Liao, Y., Smyth, G. K., & Shi, W. (2014). featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. Bioinformatics, 30(7), 923-930.
+5. Luo, W., Friedman, M. S., Shedden, K., Hankenson, K. D., & Woolf, P. J. (2009). GAGE: generally applicable gene set enrichment for pathway analysis. BMC bioinformatics, 10(1), 1-17.
+6. Soneson, C., Love, M. I., & Robinson, M. D. (2015). Differential analyses for RNA-seq: transcript-level estimates improve gene-level inferences. F1000Research, 4.
+7. Love, M. I., Soneson, C., & Robinson, M. D. (2017). Importing transcript abundance datasets with tximport. Dim Txi. Inf. Rep. Sample1, 1, 5.
  
+
+
