@@ -2,11 +2,11 @@
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 
-Snakemake Workflow for Bulk RNASeq and Gene set enrichment for Pathway/GO Analysis 
-=====================================================================================
+Snakemake Workflow for Bulk RNASeq  
+===============================================
 
 
-This is an RNASeq and Pathway/GO snakemake pipeline written by Sherine Awad. 
+This is an BulkRNASeq snakemake pipeline written by Sherine Awad. 
 The pipeline uses BBmap, featurecounts, and egdeR to do analysis at genome level. It also uses Salmon, tximport, and egdeR to do analysis at transcripts level.  
 More tools and more options are being added to the pipeline. 
 
@@ -44,11 +44,6 @@ The tx2gene will generated automatically and saved into name given in TX2GENE en
 Currently, we are using Salmon only for transcripts level, more tools will be used in the near future. 
 
 Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
-
-### Pathway/GO Analysis 
-
-Edit PATHWAY entry in configfile to TRUE to use gage to run  pathway and GO analysis. 
-You will need to edit the ORGANISM entry as well. Choose HUMAN or MOUSE. More organims will be included. 
 
 
 ### Prepare Reference
@@ -155,6 +150,9 @@ You can try the following to keep going if any issues happen, like no variants i
 
     snakemake -j 10 --keep-going --stats run.stats
 
+### TO DO 
+
+1. Add more aligners and mappers for user flexibility 
 
 ### References 
 1. Bushnell, B. (2014). BBMap: a fast, accurate, splice-aware aligner (No. LBNL-7065E). Lawrence Berkeley National Lab.(LBNL), Berkeley, CA (United States).
