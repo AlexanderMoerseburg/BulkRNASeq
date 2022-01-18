@@ -8,7 +8,7 @@ Snakemake Workflow for Bulk RNASeq
 
 This is an BulkRNASeq snakemake pipeline written by Sherine Awad. 
 The pipeline uses BBmap, featurecounts, and egdeR to do analysis at genome level. It also uses Salmon, tximport, and egdeR to do analysis at transcripts level.  
-More tools and more options are being added to the pipeline. 
+The pipeline works for any genome or transcripts. More tools and more options are being added to the pipeline. 
 
 ## Edit config file 
 
@@ -152,7 +152,8 @@ You can try the following to keep going if any issues happen, like no variants i
 
 ### TO DO 
 
-1. Add more aligners and mappers for user flexibility 
+1. Add more aligners and mappers for user flexibility. 
+2. Add more differential expressions tools. 
 
 ### References 
 1. Bushnell, B. (2014). BBMap: a fast, accurate, splice-aware aligner (No. LBNL-7065E). Lawrence Berkeley National Lab.(LBNL), Berkeley, CA (United States).
