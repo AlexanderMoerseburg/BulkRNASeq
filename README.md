@@ -57,11 +57,6 @@ If you choose to run at the transcripts level, edit the transcripts level parame
 #-------------------------------------------------------------------------
 #Change this set of parameters if you wish to run at transcripts level
 #-------------------------------------------------------------------------
-TRANSCRIPTS: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Homo_sapiens.GRCh38.cdna.all.fa"
-SALMON_INDEX: "/rds/project/rds-O11U8YqSuCk/SM/annotations/SalmonGRCh38Index"
-SALMON_LIBRARY: SR #strand see Salmon documentation 
-TX2GENE: "Ensembltx2gene.txt"
-TXGTF: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Homo_sapiens.GRCh38.104.gtf.gz"
 
 | Config Variable  | Description                      |
 | -----------------| ---------------------------------|
