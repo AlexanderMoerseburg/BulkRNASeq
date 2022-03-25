@@ -14,28 +14,64 @@ The pipeline works for any genome or transcripts. More tools and more options ar
 
 The config file has several sections. You will need to edit the general section as follows: 
 
-### Paired end or single reads 
+Edit the general parameters: 
 
-Edit the config file, choose if you have paired-end or single reads. For ppaired end read, change PAIRED entry in config file to TRUE (default). For single end reads, change PAIRED entry in config file to FALSE. 
+| Config Variable  | Description                      |
+| -----------------| ---------------------------------|
+| TREAT            | The file name that contains your treatment sample names. Default: treatment.tsv |
+| CONTROL          | The file name that contains your control sample names. Default: control.tsv  |
+| TREAT_NAME       | The name you wish to give to your treatment in figures. Default: stress|
+| CONTROL_NAME     | The name you wish to give to your control in figures. Default: wildtype |
+| WORKDIR          | your working directory |
+| STRAND           | Strand: 1 or 2 according to feature counts definition of strands |
+| N                | Number of replcates  |
+| PAIRED           | True is your samples are paired-end, false if your samples are single-ended |
+| Memory          | Memory available: "-Xmx40g" is the default for 40GB |
+| LEVEL            | Genome or Transcript: Would you like to align to the genome or map to transcipts. Genome level vs transcripts level analysis |
 
 
-### Choose and edit your treatment and control files and names
+Edit the treatment.tsv and control.tsv to have your treatments and control names.  You can edit TREAT and CONTROL entries in config file to change these file names.
 
-Edit the treatment.tsv and control.tsv to have your treatments and control names.  You can edit TREAT and CONTROL entries in config file to change these file names. 
-
-Edit the TREAT_NAME  and CONTROL_NAME in the config file to change treatment and control names. Default is stress and wildtype respecively. 
+Edit the TREAT_NAME  and CONTROL_NAME in the config file to change treatment and control names. Default is stress and wildtype respecively.
 
 
-### Edit Resources 
+If you choose to run at the transcripts level, you will need to edit the transcripts level section with TRANSCRIPTS, SALMON_INDEX, SALMON_LIBRARY, TX2GENE, and TXGTF for transcript, SALMON index location, library type as used in SALMON (SR, SF, etc), tx2gene file name and transcripts GTF.
 
-Edit MEMORY entry in config file for how much GB needed. 
+The tx2gene will generated automatically and saved into name given in TX2GENE entry in config file using our script txi2gene.R.
 
-### Run at Genome Level or Transcripts Level 
+Currently, we are using Salmon only for transcripts level, more tools will be used in the near future.
 
-Edit LEVEL entry in config file to GENOME or TRANSCRIPTS whether to run at genome level or transcripts level respectively. 
- 
 
-If you choose to run at the genome level, you will need to edit the genome level section with the GENOME, GTF, and INDEX for genome, gtf file and index location respetively. You can ignore these entries if you choose to run at transcripts level.  
+If you choose to run at genome level, edit the genome level parameters: 
+#------------------------------------------------------------------
+
+| Config Variable  | Description                      |
+| -----------------| ---------------------------------|
+| GENOME           | Path to your genome.fa |
+| GTF              | Path to your annotation file: genes.gtf   |
+| INDEX            | Path to your index|
+
+
+If you choose to run at the transcripts level, edit the transcripts level parameters: 
+
+#-------------------------------------------------------------------------
+#Change this set of parameters if you wish to run at transcripts level
+#-------------------------------------------------------------------------
+TRANSCRIPTS: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Homo_sapiens.GRCh38.cdna.all.fa"
+SALMON_INDEX: "/rds/project/rds-O11U8YqSuCk/SM/annotations/SalmonGRCh38Index"
+SALMON_LIBRARY: SR #strand see Salmon documentation 
+TX2GENE: "Ensembltx2gene.txt"
+TXGTF: "/rds/project/rds-O11U8YqSuCk/SM/annotations/Homo_sapiens.GRCh38.104.gtf.gz"
+
+| Config Variable  | Description                      |
+| -----------------| ---------------------------------|
+| TRANSCRIPTS      | Path to your transcript.fa |
+| SALMON_INDEX     | Path to your Salmon index  |
+| SALMON_LIBRARY   | Library strand according to Salmon |
+| TX2GENE          | Name of tx2gene.txt file for tximport |
+| TXGTF            | Path to annotation file gtf | 
+
+
 
 If you choose to run at the transcripts level, you will need to edit the transcripts level section with TRANSCRIPTS, SALMON_INDEX, SALMON_LIBRARY, TX2GENE, and TXGTF for transcript, SALMON index location, library type as used in SALMON (SR, SF, etc), tx2gene file name and transcripts GTF. 
 
@@ -43,7 +79,7 @@ The tx2gene will generated automatically and saved into name given in TX2GENE en
 
 Currently, we are using Salmon only for transcripts level, more tools will be used in the near future. 
 
-Refere to our Makefile to prepare Salmon Index. See Prepare Reference section below. 
+Refere to our Makefile to prepare Salmon Index. See below. 
 
 
 ### Prepare Reference
