@@ -7,7 +7,7 @@ Snakemake Workflow for Bulk RNASeq
 
 
 This is an BulkRNASeq snakemake pipeline written by Sherine Awad. 
-The pipeline uses BBmap, featurecounts, and egdeR to do analysis at genome level. It also uses Salmon, tximport, and egdeR to do analysis at transcripts level.  
+The pipeline uses BBmap, featurecounts, and egdeR to do the analysis at genome level. It also uses Salmon, tximport, and egdeR to do the analysis at transcripts level.  
 The pipeline works for any genome or transcripts. More tools and more options are being added to the pipeline. 
 
 ## Edit config file 
@@ -26,20 +26,16 @@ Edit the general parameters:
 | STRAND           | Strand: 1 or 2 according to feature counts definition of strands |
 | N                | Number of replcates  |
 | PAIRED           | True is your samples are paired-end, false if your samples are single-ended |
-| Memory          | Memory available: "-Xmx40g" is the default for 40GB |
-| LEVEL            | Genome or Transcript: Would you like to align to the genome or map to transcipts. Genome level vs transcripts level analysis |
+| Memory           | Memory available: "-Xmx40g" is the default for 40GB |
+| LEVEL            | Set to  GENOME or TRANSCRIPT: Would you like to align to the genome or map to transcipts. Genome level vs transcripts level analysis |
 
 
 Edit the treatment.tsv and control.tsv to have your treatments and control names.  You can edit TREAT and CONTROL entries in config file to change these file names.
 
+The pipeline takes samples with a suffix 'r_1.fq.gz' and 'r_2.fq.gz' if the samples are paired. Or it takes samples with suffix 'fq.gz' if the samples is single-end reads.
+Regardless your samples are paired or single-ended, samples names should be listed in treatment.tsv and control.tsv or their equivalent without the suffix.
+
 Edit the TREAT_NAME  and CONTROL_NAME in the config file to change treatment and control names. Default is stress and wildtype respecively.
-
-
-If you choose to run at the transcripts level, you will need to edit the transcripts level section with TRANSCRIPTS, SALMON_INDEX, SALMON_LIBRARY, TX2GENE, and TXGTF for transcript, SALMON index location, library type as used in SALMON (SR, SF, etc), tx2gene file name and transcripts GTF.
-
-The tx2gene will generated automatically and saved into name given in TX2GENE entry in config file using our script txi2gene.R.
-
-Currently, we are using Salmon only for transcripts level, more tools will be used in the near future.
 
 
 If you choose to run at genome level, edit the genome level parameters: 
@@ -63,15 +59,11 @@ If you choose to run at the transcripts level, edit the transcripts level parame
 | TXGTF            | Path to annotation file gtf | 
 
 
-
-If you choose to run at the transcripts level, you will need to edit the transcripts level section with TRANSCRIPTS, SALMON_INDEX, SALMON_LIBRARY, TX2GENE, and TXGTF for transcript, SALMON index location, library type as used in SALMON (SR, SF, etc), tx2gene file name and transcripts GTF. 
-
 The tx2gene will generated automatically and saved into name given in TX2GENE entry in config file using our script txi2gene.R. 
 
 Currently, we are using Salmon only for transcripts level, more tools will be used in the near future. 
 
-Refere to our Makefile to prepare Salmon Index. See below. 
-
+You can used our Makefile to pull the reference genome and for Salmon Index preparation. See the section below: i
 
 ### Prepare Reference
 
@@ -176,10 +168,6 @@ You can try the following to keep going if any issues happen, like no variants i
 
     snakemake -j 10 --keep-going --stats run.stats
 
-### TO DO 
-
-1. Add more aligners and mappers for user flexibility. 
-2. Add more differential expressions tools. 
 
 ### References 
 1. Bushnell, B. (2014). BBMap: a fast, accurate, splice-aware aligner (No. LBNL-7065E). Lawrence Berkeley National Lab.(LBNL), Berkeley, CA (United States).

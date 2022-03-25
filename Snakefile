@@ -2,7 +2,6 @@ configfile: "config.yaml"
 
 with open(config['TREAT']) as fp:
     TREAT = fp.read().splitlines()
-with open(config['CONTROL']) as fp:
     CONTROL = fp.read().splitlines()
 
 print(TREAT) 

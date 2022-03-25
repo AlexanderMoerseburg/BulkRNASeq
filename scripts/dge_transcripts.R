@@ -4,6 +4,7 @@ library(readr)
 library("edgeR")
 library("gplots")
 library(dplyr)
+library(calibrate)
 
 args <- commandArgs(trailingOnly = TRUE)
 control = args[1]
@@ -18,7 +19,7 @@ print(names)
 file.exists(files)
 tr2gene <- read.csv(tximport_file)
 head(tr2gene)
-tx2gene <- select(tr2gene,TXNAME,GENEID)
+tx2gene <- dplyr::select(tr2gene,TXNAME,GENEID)
 head(tx2gene)
 txi <- tximport(files, type = "salmon", txIn = TRUE, txOut = FALSE, tx2gene = tx2gene, countsFromAbundance = "scaledTPM", ignoreTxVersion=TRUE, geneIdCol="GENEID", txIdCol="TXNAME")
 
@@ -108,8 +109,9 @@ title = paste(outname, "Heatmap", sep=" ")
 pdf(fig)
 #logCPM = etp$table 
 logCPM =countsPerMillion
-o = rownames(etp$table[abs(etp$table$logFC)>1 & etp$table$PValue<0.05, ])
-logCPM <- logCPM[o[1:25],]
+o = rownames(etp$table[abs(etp$table$logFC)>1 & etp$table$FDR<0.05, ])
+head(o)
+logCPM <- logCPM[o[1:5],]
 colnames(logCPM) = labels
 logCPM <- t(scale(t(logCPM)))
 require("RColorBrewer")
