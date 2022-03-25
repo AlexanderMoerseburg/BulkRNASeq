@@ -43,7 +43,7 @@ Currently, we are using Salmon only for transcripts level, more tools will be us
 
 
 If you choose to run at genome level, edit the genome level parameters: 
-#------------------------------------------------------------------
+
 
 | Config Variable  | Description                      |
 | -----------------| ---------------------------------|
@@ -53,10 +53,6 @@ If you choose to run at genome level, edit the genome level parameters:
 
 
 If you choose to run at the transcripts level, edit the transcripts level parameters: 
-
-#-------------------------------------------------------------------------
-#Change this set of parameters if you wish to run at transcripts level
-#-------------------------------------------------------------------------
 
 | Config Variable  | Description                      |
 | -----------------| ---------------------------------|
