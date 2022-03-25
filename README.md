@@ -75,9 +75,8 @@ Refere to our Makefile to prepare Salmon Index. See below.
 
 ### Prepare Reference
 
-Whether you will run at genome level or transcripts level, you can use our  Makefile to pull the reference if needed (See below). 
-
-For the sake of reproducibility, we provide a makefile to pull the reference; HUMAN or Mouse. More references will be included.
+For the sake of reproducibility, we provide a makefile to pull the reference; HUMAN or Mouse. But you can include any reference you wish to use. 
+We are giving examples using Human and Mouse genome. 
 
 
 For Human Ensembl GRCh37:
