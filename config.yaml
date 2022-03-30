@@ -9,13 +9,13 @@ WORKDIR: '/rds/project/rds-O11U8YqSuCk/SM/RNASeq'
 STRAND: 2
 N : 2 #Number of replicates
 PAIRED: TRUE  #PAIRED is either TRUE or FALSE  
-MEMORY: "-Xmx40g" #for 40giga, change as much giga as you have 
+MEMORY: "-Xmx20g" #for 20giga, change as much giga as you have 
 
 
 #---------------------------------------------------------------
 #Choose whether to do genome level or at transcripts level
 #---------------------------------------------------------------
-LEVEL: GENOME #TRANSCRIPTS #For genome level analysis use GENOME, change to TRANSCRIPTS for transcripts level analysis
+LEVEL: TRANSCRIPTS #GENOME #TRANSCRIPTS #For genome level analysis use GENOME, change to TRANSCRIPTS for transcripts level analysis
 
 
 #------------------------------------------------------------------

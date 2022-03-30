@@ -2,22 +2,26 @@ configfile: "config.yaml"
 
 with open(config['TREAT']) as fp:
     TREAT = fp.read().splitlines()
+
+with open(config['CONTROL']) as fp:
     CONTROL = fp.read().splitlines()
 
 print(TREAT) 
 print(CONTROL)
-SAMPLES = "samples.txt"
-if config['LEVEL'] == "GENOME": 
+
+PAIRED = config['PAIRED'] 
+LEVEL = config['LEVEL']
+
+if LEVEL == "GENOME": 
      rule all:
          input:
-            expand("{sample}.bam", sample = TREAT),
-            expand("{sample}.bam", sample = CONTROL),
             expand("{sample}.sorted.bam", sample = TREAT),
             expand("{sample}.sorted.bam", sample = CONTROL),
             expand("{sample}.{group}.txt", sample = TREAT, group = config['TREAT_NAME']),
             expand("{sample}.{group}.txt", sample = CONTROL, group = config['CONTROL_NAME']),
             expand("{treat}_{control}_cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
             expand("{treat}_{control}_dge.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
+
 else: 
       rule all: 
          input: 
@@ -25,7 +29,7 @@ else:
             expand("{sample}.{group}.quant.sf", sample = CONTROL, group =config['CONTROL_NAME']),
             expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
  
-if config['PAIRED']: 
+if PAIRED: 
     rule trim: 
        input: 
            r1 = "{sample}.r_1.fq.gz",
@@ -55,8 +59,8 @@ else:
            trim_galore --gzip --retain_unpaired --trim1 --fastqc --fastqc_args "--outdir fastqc" -o galore {input} 
            """
 
-if config['PAIRED']: 
-    if config['LEVEL'] =="GENOME":
+if PAIRED: 
+    if LEVEL =="GENOME":
          rule tobam:
               input:
                   r1 = "galore/{sample}.r_1_val_1.fq.gz",
@@ -90,8 +94,9 @@ if config['PAIRED']:
                  ln -fs {output[0]} {output[1]} 
                  """
 
+
 else:
-      if config['LEVEL'] =="GENOME": 
+      if LEVEL =="GENOME": 
          rule tobam:
               input:
                    "galore/{sample}_trimmed.fq.gz"
@@ -123,7 +128,7 @@ else:
                      ln -fs {output[0]} {output[1]}
                      """
 
-if config['LEVEL'] == "GENOME":
+if LEVEL == "GENOME":
     rule sort:
        input:
             "{sample}.bam"
@@ -152,11 +157,14 @@ if config['LEVEL'] == "GENOME":
               tail -n +3 {params[2]} | cut -f1,7 > {output[0]}
               """
 
-    rule DGE_genome: 
+    rule DGE_genome:
+        input:
+           expand("{sample}.{group}.txt", sample = TREAT, group = config['TREAT_NAME']), 
+           expand("{sample}.{group}.txt", sample = CONTROL, group = config['CONTROL_NAME'])
         params: 
            treat = config['TREAT_NAME'], 
            control = config['CONTROL_NAME'], 
-           N = config['N'],
+           N = config['N']
         output:
            expand("{treat}_{control}_cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
            expand("{treat}_{control}_dge.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
@@ -168,18 +176,21 @@ if config['LEVEL'] == "GENOME":
 
 else:
     rule DGE_TRANSCRIPTS:
+          input: 
+            expand("SALMON_{sample}.{group}/quant.sf",sample = TREAT, group = config['TREAT_NAME']),
+            expand("SALMON_{sample}.{group}/quant.sf",sample = CONTROL, group = config['CONTROL_NAME'])
           params:
-                           treat = config['TREAT_NAME'],
-                           control = config['CONTROL_NAME'],
-                           N = config['N'],
-                           gtf = config['TXGTF'],
-                           tx2gene = config['TX2GENE']
+            treat = config['TREAT_NAME'],
+            control = config['CONTROL_NAME'],
+            N = config['N'],
+            gtf = config['TXGTF'],
+            tx2gene = config['TX2GENE']
           output:
-                           expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
+            expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'], control =config['CONTROL_NAME']),
           conda: 'env/env-dge.yaml'
           shell:
-                           """
-                           Rscript scripts/txi2gene.R {params[3]} {params[4]}
-                           Rscript scripts/dge_transcripts.R {params[1]} {params[0]} {params[2]} {params[4]}
-                           """
+            """
+            Rscript scripts/txi2gene.R {params[3]} {params[4]}
+            Rscript scripts/dge_transcripts.R {params[1]} {params[0]} {params[2]} {params[4]}
+            """
  
