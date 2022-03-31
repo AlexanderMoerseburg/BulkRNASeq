@@ -15,7 +15,7 @@ MEMORY: "-Xmx20g" #for 20giga, change as much giga as you have
 #---------------------------------------------------------------
 #Choose whether to do genome level or at transcripts level
 #---------------------------------------------------------------
-LEVEL: TRANSCRIPTS #GENOME #TRANSCRIPTS #For genome level analysis use GENOME, change to TRANSCRIPTS for transcripts level analysis
+LEVEL: GENOME #TRANSCRIPTS #For genome level analysis use GENOME, change to TRANSCRIPTS for transcripts level analysis
 
 
 #------------------------------------------------------------------

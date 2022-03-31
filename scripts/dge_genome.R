@@ -94,9 +94,6 @@ with(res, plot(logFC, -log10(PValue), pch=20, main=title, xlim=c(-12,12)))
 with(subset(res, FDR<0.05 ), points(logFC, -log10(PValue), pch=20, col="red"))
 with(subset(res, abs(logFC)> 2), points(logFC, -log10(PValue), pch=20, col="orange"))
 with(subset(res, FDR<0.05 & abs(logFC)> 2), points(logFC, -log10(PValue), pch=20, col="green"))
-# Label points with the textxy function from the calibrate plot
-#library(calibrate)
-#with(subset(res,FDR<.05 & abs(logFC)>1), textxy(logFC, -log10(PValue), labs=Gene, cex=.8))
 dev.off()
 #-------------------------------
 #Heatmap Plot for log CPM  
@@ -104,9 +101,8 @@ dev.off()
 fig = paste(outname,"heatmap.pdf", sep="-")
 title = paste(outname, "Heatmap", sep=" ")
 pdf(fig)
-#logCPM = etp$table 
 logCPM =countsPerMillion
-o = rownames(etp$table[abs(etp$table$logFC)>1 & etp$table$PValue<0.05, ])
+o = rownames(etp$table[abs(etp$table$logFC)>1 & etp$table$FDR<0.05, ])
 logCPM <- logCPM[o[1:50],]
 colnames(logCPM) = labels
 logCPM <- t(scale(t(logCPM)))
