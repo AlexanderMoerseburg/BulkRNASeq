@@ -5,7 +5,6 @@ channels:
     - defaults
 dependencies:
     - r-base=4.0.5
-    - r-readr=2.0.2
     - r-gplots=3.1.1
     - bioconductor-edger=3.32.1
-    bioconductor-limma=3.46.0
+    - bioconductor-limma=3.46.0

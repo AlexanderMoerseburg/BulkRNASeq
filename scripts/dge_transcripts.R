@@ -1,10 +1,6 @@
 library(tximport)
-library(rjson)
-library(readr)
 library("edgeR")
 library("gplots")
-library(dplyr)
-library(calibrate)
 
 args <- commandArgs(trailingOnly = TRUE)
 control = args[1]

@@ -168,7 +168,7 @@ if LEVEL == "GENOME":
         output:
            expand("{treat}_{control}_cpm.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME']),
            expand("{treat}_{control}_dge.csv", treat =config['TREAT_NAME'],control =config['CONTROL_NAME'])
-        conda: 'env/env-dge.yaml'
+        conda: 'env/env-dge-genome.yaml'
         shell: 
            """
            Rscript scripts/dge_genome.R {params[0]} {params[1]} {params[2]}  
@@ -187,7 +187,7 @@ else:
             tx2gene = config['TX2GENE']
           output:
             expand("{control}_{treat}_salmon.cpm.csv", treat =config['TREAT_NAME'], control =config['CONTROL_NAME']),
-          conda: 'env/env-dge.yaml'
+          conda: 'env/env-dge-transcripts.yaml'
           shell:
             """
             Rscript scripts/txi2gene.R {params[3]} {params[4]}

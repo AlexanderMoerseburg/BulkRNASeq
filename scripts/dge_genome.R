@@ -1,17 +1,5 @@
 library("edgeR")
-library(biomaRt)
-library(dplyr)
-library("AnnotationDbi")
-library("org.Hs.eg.db")
-library(data.table)
 library("gplots")
-library(magrittr)
-library(pathview)
-library("org.Mm.eg.db")
-library(gage)
-library(gageData)
-library(data.table)
-
 
 args <- commandArgs(trailingOnly = TRUE)
 control = args[1]
